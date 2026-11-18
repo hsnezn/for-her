@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Para kay Misha, mula kay Pachi 🌸</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --pink-0:#fff7fb;
+    --pink-1:#ffeaf4;
+    --pink-2:#ffd6e8;
+    --pink-3:#ff9ec7;
+    --pink-4:#ff6fae;
+    --pink-5:#e14b8a;
+    --ink:#5c2542;
+    --ink-soft:#8a5674;
+    --card:rgba(255,255,255,.72);
+    --shadow:0 12px 30px rgba(225,75,138,.18);
+    --radius:22px;
+  }
+
+  *{box-sizing:border-box}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    margin:0;
+    font-family:'Quicksand',system-ui,-apple-system,Segoe UI,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 8% -5%, #ffe0ee 0%, rgba(255,224,238,0) 45%),
+      radial-gradient(circle at 95% 5%, #ffd9ea 0%, rgba(255,217,234,0) 40%),
+      radial-gradient(circle at 50% 100%, #ffe6f3 0%, rgba(255,230,243,0) 55%),
+      linear-gradient(180deg,#fff9fc 0%, #ffeff7 40%, #ffe4f0 100%);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{font-family:'Baloo 2','Quicksand',cursive; margin:0; line-height:1.15}
+
+  /* ---------- floating petals ---------- */
+  #petals{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden}
+  .petal{
+    position:absolute; top:-40px; font-size:18px; opacity:.55;
+    animation:drift linear infinite;
+    will-change:transform;
+  }
+  @keyframes drift{
+    0%{transform:translate3d(0,-60px,0) rotate(0deg)}
+    100%{transform:translate3d(var(--dx,20px),105vh,0) rotate(360deg)}
+  }
+
+  /* ---------- click hearts ---------- */
+  .spawn-heart{
+    position:fixed; pointer-events:none; z-index:9999; font-size:20px;
+    animation:popUp .95s ease-out forwards;
+  }
+  @keyframes popUp{
+    0%{transform:translate(-50%,-50%) scale(.4); opacity:1}
+    100%{transform:translate(-50%,-160%) scale(1.5); opacity:0}
+  }
+
+  /* ---------- layout ---------- */
+  .wrap{position:relative; z-index:2; max-width:1000px; margin:0 auto; padding:0 18px 80px}
+
+  nav{
+    position:sticky; top:12px; z-index:50;
+    display:flex; gap:6px; flex-wrap:wrap; justify-content:center;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,158,199,.5);
+    border-radius:999px;
+    padding:8px 12px; margin:14px auto 0; width:fit-content; max-width:100%;
+    box-shadow:var(--shadow);
+  }
+  nav a{
+    text-decoration:none; color:var(--pink-5); font-weight:700; font-size:.86rem;
+    padding:7px 14px; border-radius:999px; transition:.2s; white-space:nowrap;
+  }
+  nav a:hover{background:var(--pink-2); color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  header.hero{text-align:center; padding:46px 16px 30px}
+  .badge{
+    display:inline-block; background:#fff; border:1px dashed var(--pink-3);
+    color:var(--pink-5); font-weight:700; font-size:.78rem; letter-spacing:.08em;
+    text-transform:uppercase; padding:7px 16px; border-radius:999px; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem,6vw,3.6rem); font-weight:800;
+    background:linear-gradient(90deg,var(--pink-4),var(--pink-5),#ff9ec7);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .sub{margin-top:12px; font-size:clamp(1rem,2.6vw,1.15rem); color:var(--ink-soft); font-weight:600}
+  #typed{color:var(--pink-5)}
+  .caret{display:inline-block; width:2px; background:var(--pink-4); margin-left:2px; animation:blink .9s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  .hero-btns{margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .btn{
+    font-family:inherit; font-weight:700; font-size:.95rem; cursor:pointer;
+    border:none; border-radius:999px; padding:13px 26px;
+    background:linear-gradient(135deg,var(--pink-4),var(--pink-5)); color:#fff;
+    box-shadow:0 10px 22px rgba(225,75,138,.32); transition:transform .15s, box-shadow .2s;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 14px 26px rgba(225,75,138,.4)}
+  .btn:active{transform:translateY(0)}
+  .btn.ghost{
+    background:#fff; color:var(--pink-5);
+    border:2px solid var(--pink-2); box-shadow:none;
+  }
+  .btn.small{padding:9px 18px; font-size:.84rem}
+
+  .stat-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px}
+  .stat{
+    background:var(--card); border:1px solid rgba(255,158,199,.55); border-radius:18px;
+    padding:14px 22px; min-width:150px; backdrop-filter:blur(8px); box-shadow:var(--shadow);
+  }
+  .stat b{display:block; font-family:'Baloo 2'; font-size:1.6rem; color:var(--pink-5)}
+  .stat span{font-size:.78rem; color:var(--ink-soft); font-weight:700; letter-spacing:.04em; text-transform:uppercase}
+
+  /* ---------- sections ---------- */
+  section{margin-top:56px; scroll-margin-top:90px}
+  .sec-head{text-align:center; margin-bottom:22px}
+  .sec-head h2{font-size:clamp(1.5rem,4vw,2.1rem); color:var(--pink-5)}
+  .sec-head p{margin:8px 0 0; color:var(--ink-soft); font-weight:600; font-size:.94rem}
+
+  .card{
+    background:var(--card); border:1px solid rgba(255,158,199,.5);
+    border-radius:var(--radius); padding:22px; backdrop-filter:blur(10px);
+    box-shadow:var(--shadow);
+  }
+
+  /* ---------- notes ---------- */
+  .note-stage{position:relative; min-height:210px; display:flex; align-items:center; justify-content:center; text-align:center}
+  .note{
+    font-family:'Baloo 2'; font-size:clamp(1.05rem,3vw,1.45rem); line-height:1.5;
+    color:var(--ink); max-width:640px; animation:fade .45s ease;
+  }
+  @keyframes fade{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+  .note-sig{
+    margin-top:14px; font-family:'Baloo 2'; font-weight:700;
+    color:var(--pink-4); font-size:1rem; letter-spacing:.02em;
+  }
+  .note-tools{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px}
+  .dots{display:flex; gap:7px; justify-content:center; margin-top:16px; flex-wrap:wrap}
+  .dot{width:9px; height:9px; border-radius:50%; background:var(--pink-2); cursor:pointer; transition:.2s}
+  .dot.on{background:var(--pink-5); transform:scale(1.3)}
+
+  /* ---------- games ---------- */
+  .tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:20px}
+  .tab{
+    font-family:inherit; font-weight:700; font-size:.86rem; cursor:pointer;
+    padding:10px 18px; border-radius:999px; border:2px solid var(--pink-2);
+    background:#fff; color:var(--pink-5); transition:.2s;
+  }
+  .tab:hover{background:var(--pink-1)}
+  .tab.on{background:linear-gradient(135deg,var(--pink-4),var(--pink-5)); color:#fff; border-color:transparent}
+
+  .panel{display:none}
+  .panel.on{display:block; animation:fade .35s ease}
+
+  .game-top{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom:16px}
+  .hud{display:flex; gap:10px; flex-wrap:wrap}
+  .chip{
+    background:#fff; border:1px solid var(--pink-2); border-radius:999px;
+    padding:8px 15px; font-weight:700; font-size:.84rem; color:var(--pink-5);
+  }
+  .hint{font-size:.82rem; color:var(--ink-soft); font-weight:600; margin-top:12px; text-align:center}
+
+  /* memory */
+  #memGrid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:440px; margin:0 auto}
+  .mem-card{
+    aspect-ratio:1/1; border-radius:16px; border:2px solid var(--pink-2); background:#fff;
+    font-size:clamp(1.4rem,6vw,2rem); cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:transform .2s, background .25s; user-select:none;
+  }
+  .mem-card .face{opacity:0; transition:opacity .2s}
+  .mem-card.up{background:var(--pink-1); transform:rotateY(180deg)}
+  .mem-card.up .face{opacity:1}
+  .mem-card.done{background:#ffe9f3; border-color:var(--pink-3); cursor:default}
+  .mem-card.done .face{opacity:1}
+
+  /* falling hearts */
+  #catchArea{
+    position:relative; overflow:hidden; border-radius:18px; height:320px;
+    background:linear-gradient(180deg,#fff0f7,#ffe3f0); border:2px dashed var(--pink-2);
+  }
+  .falling-heart{
+    position:absolute; top:-50px; border:none; background:none; cursor:pointer;
+    animation:fall linear forwards; padding:4px; line-height:1;
+  }
+  @keyframes fall{to{transform:translateY(390px) rotate(220deg)}}
+
+  /* whack */
+  #whackGrid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:400px; margin:0 auto}
+  .hole{
+    aspect-ratio:1/1; border-radius:18px; border:2px solid var(--pink-2);
+    background:linear-gradient(180deg,#fff,#ffeaf4); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:clamp(1.5rem,7vw,2.2rem);
+    transition:.12s;
+  }
+  .hole.up{background:linear-gradient(180deg,#ffdfee,#ffc7e2); transform:scale(.95); box-shadow:inset 0 4px 12px rgba(225,75,138,.2)}
+  .hole:active{transform:scale(.93)}
+
+  /* bubbles */
+  #bubbleWrap{display:grid; grid-template-columns:repeat(auto-fit,minmax(96px,1fr)); gap:12px}
+  .bubble{
+    aspect-ratio:1/1; border-radius:50%; border:none; cursor:pointer;
+    background:radial-gradient(circle at 32% 28%, #fff, var(--pink-2) 55%, var(--pink-3));
+    box-shadow:0 8px 18px rgba(225,75,138,.22);
+    font-size:1.5rem; transition:transform .2s, opacity .35s;
+  }
+  .bubble:hover{transform:scale(1.06)}
+  .bubble.pop{transform:scale(1.5); opacity:0; pointer-events:none}
+  #bubbleMsg{
+    margin-top:18px; min-height:58px; text-align:center;
+    font-family:'Baloo 2'; font-size:1.15rem; color:var(--pink-5);
+  }
+
+  /* scratch */
+  #scratchWrap{
+    position:relative; max-width:460px; margin:0 auto; height:210px; border-radius:20px; overflow:hidden;
+    background:linear-gradient(135deg,#fff6fb,#ffe4f1); border:2px solid var(--pink-2);
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+  }
+  #scratchWrap .prize{font-family:'Baloo 2'; font-size:1.2rem; color:var(--pink-5); line-height:1.45}
+  #scratch{position:absolute; inset:0; cursor:grab; touch-action:none}
+
+  /* ---------- timer ---------- */
+  .timer-box{text-align:center}
+  #clock{
+    font-family:'Baloo 2'; font-size:clamp(3.2rem,14vw,5rem); color:var(--pink-5); line-height:1;
+    letter-spacing:.02em;
+  }
+  .bar{height:12px; border-radius:999px; background:#ffe4f0; overflow:hidden; max-width:420px; margin:18px auto 0}
+  .bar i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--pink-3),var(--pink-5)); transition:width .4s linear}
+  .mode-row{display:flex; gap:8px; justify-content:center; margin:20px 0 18px; flex-wrap:wrap}
+  #timerMsg{margin-top:18px; font-weight:700; color:var(--ink-soft); min-height:24px}
+
+  /* ---------- promise ---------- */
+  .letter{line-height:1.8; font-size:1rem; font-weight:500}
+  .letter p{margin:0 0 14px}
+  .letter .sig{font-family:'Baloo 2'; font-size:1.25rem; color:var(--pink-5); margin-top:18px}
+  .hug-zone{text-align:center; margin-top:22px}
+  #hugText{margin-top:14px; font-family:'Baloo 2'; font-size:1.2rem; color:var(--pink-5); min-height:30px}
+
+  footer{text-align:center; margin-top:60px; color:var(--ink-soft); font-weight:600; font-size:.85rem}
+
+  @media (max-width:520px){
+    #memGrid{grid-template-columns:repeat(4,1fr); gap:7px}
+    nav a{padding:6px 11px; font-size:.8rem}
+    .card{padding:18px}
+  }
+</style>
+</head>
+<body>
+
+<div id="petals" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <nav>
+    <a href="#notes">Notes para sa'yo</a>
+    <a href="#games">Games</a>
+    <a href="#study">Study Buddy</a>
+    <a href="#promise">Pangako</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge">Para kay Nicole "Misha" Missiona — mula kay Pachi</div>
+    <h1>Hi Misha 🌸</h1>
+    <p class="sub">Isang maliit na website para sa isang<br /><span id="typed"></span><span class="caret">&nbsp;</span></p>
+    <div class="hero-btns">
+      <button class="btn" id="randomNoteBtn">Bigyan mo ako ng note 💌</button>
+      <a class="btn ghost" href="#games" style="text-decoration:none; display:inline-block">Maglaro muna tayo 🎮</a>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><b id="dayCount">0</b><span>Araw kitang hinihintay</span></div>
+      <div class="stat"><b id="noteCount">0</b><span>Notes na para sa'yo</span></div>
+      <div class="stat"><b id="gameCount">5</b><span>Games dito</span></div>
+    </div>
+  </header>
+
+  <!-- ============ NOTES ============ -->
+  <section id="notes">
+    <div class="sec-head">
+      <h2>Mga Note ni Pachi Para sa'yo 💌</h2>
+      <p>Pindutin lang kung kailan ka pagod. Nandito lang sila, palagi.</p>
+    </div>
+
+    <div class="card">
+      <div class="note-stage">
+        <div>
+          <div class="note" id="noteText">Naglo-load... 🌷</div>
+          <div class="note-sig">— Pachi 💗</div>
+        </div>
+      </div>
+      <div class="note-tools">
+        <button class="btn small ghost" id="prevNote">← Nakaraan</button>
+        <button class="btn small" id="nextNote">Susunod →</button>
+        <button class="btn small ghost" id="surpriseNote">Surpresahin mo ako 🎲</button>
+      </div>
+      <div class="dots" id="noteDots"></div>
+    </div>
+  </section>
+
+  <!-- ============ GAMES ============ -->
+  <section id="games">
+    <div class="sec-head">
+      <h2>Study Break Games 🎮</h2>
+      <p>Limang minuto lang ng pahinga, Misha. Dapat ka namang mag-relax.</p>
+    </div>
+
+    <div class="tabs" id="gameTabs">
+      <button class="tab on" data-panel="p-mem">💗 Memory Match</button>
+      <button class="tab" data-panel="p-catch">🩷 Huliin ang Hearts</button>
+      <button class="tab" data-panel="p-whack">🧪 MedTech Whack</button>
+      <button class="tab" data-panel="p-bubble">🫧 Bubble Notes</button>
+      <button class="tab" data-panel="p-scratch">✨ Scratch Card</button>
+    </div>
+
+    <div class="card">
+
+      <!-- MEMORY -->
+      <div class="panel on" id="p-mem">
+        <div class="game-top">
+          <div class="hud">
+            <span class="chip">Moves: <b id="memMoves">0</b></span>
+            <span class="chip">Pairs: <b id="memPairs">0</b>/8</span>
+            <span class="chip">Time: <b id="memTime">0</b>s</span>
+          </div>
+          <button class="btn small" id="memReset">Ulitin 🔄</button>
+        </div>
+        <div id="memGrid"></div>
+        <p class="hint" id="memHint">Hanapin ang magkaparehong pares. Isipin mo: kaming dalawa — magkapares din. 😌</p>
+      </div>
+
+      <!-- CATCH -->
+      <div class="panel" id="p-catch">
+        <div class="game-top">
+          <div class="hud">
+            <span class="chip">Score: <b id="catchScore">0</b></span>
+            <span class="chip">Time: <b id="catchTime">30</b>s</span>
+          </div>
+          <button class="btn small" id="catchBtn">Simulan 🩷</button>
+        </div>
+        <div id="catchArea"></div>
+        <p class="hint">I-tap ang mga nahuhulog na hearts. Bawat isa, isang "miss na miss kita". 💗</p>
+      </div>
+
+      <!-- WHACK -->
+      <div class="panel" id="p-whack">
+        <div class="game-top">
+          <div class="hud">
+            <span class="chip">Score: <b id="whackScore">0</b></span>
+            <span class="chip">Time: <b id="whackTime">30</b>s</span>
+          </div>
+          <button class="btn small" id="whackBtn">Simulan 🧪</button>
+        </div>
+        <div id="whackGrid"></div>
+        <p class="hint">I-tap ang mga lab items bago sila mawala. Feeling medtech ka na nito. 🩺</p>
+      </div>
+
+      <!-- BUBBLES -->
+      <div class="panel" id="p-bubble">
+        <div class="game-top">
+          <div class="hud"><span class="chip">Naputok: <b id="bubbleCount">0</b>/9</span></div>
+          <button class="btn small" id="bubbleReset">Bagong bubbles 🫧</button>
+        </div>
+        <div id="bubbleWrap"></div>
+        <div id="bubbleMsg">Pindutin ang bubble para sa mensahe. 🌸</div>
+      </div>
+
+      <!-- SCRATCH -->
+      <div class="panel" id="p-scratch">
+        <div class="game-top">
+          <div class="hud"><span class="chip">Surpresa lang 😊</span></div>
+          <button class="btn small" id="scratchReset">Bagong card ✨</button>
+        </div>
+        <div id="scratchWrap">
+          <div class="prize" id="scratchPrize">Handa ka na ba?</div>
+          <canvas id="scratch"></canvas>
+        </div>
+        <p class="hint">I-scratch mo gamit ang daliri o mouse. May nakatagong mensahe sa ilalim. ✨</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ STUDY BUDDY ============ -->
+  <section id="study">
+    <div class="sec-head">
+      <h2>Study Buddy Timer ⏳</h2>
+      <p>25 minutes ng focus, 5 minutes na pahinga. Sabayan mo ako mag-aral, Misha.</p>
+    </div>
+
+    <div class="card timer-box">
+      <div id="clock">25:00</div>
+      <div class="bar"><i id="timerBar"></i></div>
+
+      <div class="mode-row">
+        <button class="tab on" data-mode="focus">Focus 25 min</button>
+        <button class="tab" data-mode="short">Pahinga 5 min</button>
+        <button class="tab" data-mode="long">Mahabang pahinga 15 min</button>
+      </div>
+
+      <div class="note-tools">
+        <button class="btn" id="timerStart">Simulan ▶</button>
+        <button class="btn ghost" id="timerReset">I-reset</button>
+      </div>
+
+      <div id="timerMsg">Handa na ako kapag handa ka na. 🌷</div>
+    </div>
+  </section>
+
+  <!-- ============ PROMISE ============ -->
+  <section id="promise">
+    <div class="sec-head">
+      <h2>Pangako ni Pachi 💍</h2>
+      <p>Basahin mo 'to tuwing feeling mo sobrang bigat na ng lahat.</p>
+    </div>
+
+    <div class="card letter">
+      <p>Misha,</p>
+      <p>
+        Si Pachi 'to. Alam ko kung gaano kabigat ang first year ng MedTech — ang daming babasahin, ang daming
+        quizzes, ang daming tulog na isinakripisyo. At alam ko rin na kapag sinabi mong
+        "busy ako," hindi ibig sabihin nun na ayaw mo sa akin. Ibig sabihin lang nun: nagtatrabaho ka
+        para sa pangarap mo. At iyon, gusto ko.
+      </p>
+      <p>
+        Kaya heto ang pangako ni Pachi sa'yo: <b>hindi ako magmamadali.</b> Hindi ako mawawala dahil lang
+        hindi ka agad nakakasagot. Hindi ko gawing dagdag na pressure ang pagmamahal ko. Ang gusto ko,
+        maging pahinga mo ako — hindi isa pang bagay na kailangan mong asikasuhin.
+      </p>
+      <p>
+        Maghihintay ako. Sa bawat "review muna," sa bawat "eedit lang," sa bawat exam week —
+        nandito lang ako. Manliligaw mo pa rin si Pachi, kahit gaano katagal abutin.
+        RMT ka sa dulo, at gusto kong maging isa sa mga unang mag-congrats sa'yo. 🩺💗
+      </p>
+      <p>
+        Kaya mag-focus ka lang diyan, Nicole. Ako, si Pachi, bahala sa paghihintay.
+      </p>
+      <p class="sig">— Pachi 🌸</p>
+
+      <div class="hug-zone">
+        <button class="btn" id="hugBtn">Pindutin mo 'to kung pagod ka 🤗</button>
+        <div id="hugText"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Ginawa ni Pachi, nang may pagmamahal, para kay Misha. 🩷<br />
+    Ina-update kita dito kahit busy ka — nandito lang ito, palagi.
+  </footer>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG — pwede mong baguhin ito
+   Petsa kung kailan ka nagsimulang maghintay (para sa counter)
+========================================================= */
+const START_DATE = "2026-01-01";
+
+/* =========================================================
+   NOTES
+========================================================= */
+const NOTES = [
+  "Misha, kahit sunod-sunod ang quizzes at duty mo, nandito lang ako. Hindi ako nauubusan ng pasensya para sa'yo. 🌸",
+  "Alam kong pagod ka. Kung kailangan mo ng tahimik na kasama habang nag-aaral, tawag ka lang — hindi ako mangungulit, nandito lang si Pachi.",
+  "First year pa lang 'yan, Misha. Lahat ng RMT ngayon, first year din noon. Kayang-kaya mo 'to. 💗",
+  "Hindi ako nagmamadali. Marunong maghintay si Pachi — lalo na kapag ikaw ang hinihintay.",
+  "Kung ang focus mo ngayon ay pag-aaral, okay lang sa akin. Priority mo 'yan, at priority ko ang kaligayahan mo.",
+  "Kapag feeling mo susuko ka na, tandaan mo: isa ka sa pinakamalakas na babae na kilala ko. At kung mapagod ka, pwede kang huminto sandali — hindi ako aalis.",
+  "Sa tuwing sasabihin mong 'busy ako,' ang sagot ko lang: 'okay lang, nandito lang ako.' Walang pressure, Misha.",
+  "Isang yakap, isang ngiti, at isang 'kaya mo 'yan' — iyon ang ipinapadala ko sa'yo ngayon. 🩷",
+  "Kahit abutin pa ng ilang taon ang pag-aaral mo, ikaw pa rin ang gusto kong hintayin bawat umaga.",
+  "Hindi kita minamadali. Ang mahalaga, masaya kang nag-aaral. Ang ligaw na 'to, walang deadline. 🌷",
+  "Kumain ka, Misha. Uminom ng tubig. Matulog ng maayos. Hindi lang grades ang mahalaga — ikaw din.",
+  "Kahit hindi mo ako reply-an ngayon, naiintindihan ko. Basta alam ko lang na nasa ayos ka, okay na ako. 💗",
+  "Ang paghihintay sa'yo, hindi 'yan burden — pribilehiyo 'yan para kay Pachi.",
+  "Kapag naipasa mo 'yang exam na 'yan, ipagdiriwang natin — kahit simpleng milk tea lang. 🧋"
+];
+
+const noteEl = document.getElementById('noteText');
+const dotsEl = document.getElementById('noteDots');
+let noteIndex = 0;
+
+function renderNote(i){
+  noteIndex = (i + NOTES.length) % NOTES.length;
+  noteEl.textContent = NOTES[noteIndex];
+  noteEl.style.animation = 'none';
+  void noteEl.offsetWidth;
+  noteEl.style.animation = 'fade .45s ease';
+  [...dotsEl.children].forEach((d,idx)=> d.classList.toggle('on', idx === noteIndex));
+}
+function buildDots(){
+  dotsEl.innerHTML = '';
+  NOTES.forEach((_, i)=>{
+    const d = document.createElement('span');
+    d.className = 'dot';
+    d.addEventListener('click', ()=> renderNote(i));
+    dotsEl.appendChild(d);
+  });
+}
+document.getElementById('nextNote').addEventListener('click', ()=> renderNote(noteIndex + 1));
+document.getElementById('prevNote').addEventListener('click', ()=> renderNote(noteIndex - 1));
+document.getElementById('surpriseNote').addEventListener('click', ()=>{
+  let r = noteIndex;
+  while (NOTES.length > 1 && r === noteIndex) r = Math.floor(Math.random() * NOTES.length);
+  renderNote(r);
+});
+document.getElementById('randomNoteBtn').addEventListener('click', ()=>{
+  document.getElementById('notes').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{
+    let r = Math.floor(Math.random() * NOTES.length);
+    renderNote(r);
+  }, 350);
+});
+
+/* =========================================================
+   HERO TYPING
+========================================================= */
+const TYPED_LINES = [
+  "babae na sobrang busy pero sobrang galing. 🩺",
+  "future MedTech na inaantay ko. 🧪",
+  "Misha. Ang pahinga mo kapag pagod ka. 🌸",
+  "taong tinatawag mong Pachi. 🩷",
+  "taong hindi ako nagsasawang hintayin. 💗"
+];
+const typedEl = document.getElementById('typed');
+let lineIdx = 0, charIdx = 0, deleting = false;
+function typeLoop(){
+  const line = TYPED_LINES[lineIdx];
+  if (!deleting){
+    charIdx++;
+    typedEl.textContent = line.slice(0, charIdx);
+    if (charIdx >= line.length){ deleting = true; return setTimeout(typeLoop, 1600); }
+    return setTimeout(typeLoop, 55);
+  } else {
+    charIdx--;
+    typedEl.textContent = line.slice(0, charIdx);
+    if (charIdx <= 0){ deleting = false; lineIdx = (lineIdx + 1) % TYPED_LINES.length; return setTimeout(typeLoop, 300); }
+    return setTimeout(typeLoop, 28);
+  }
+}
+
+/* =========================================================
+   PETALS + CLICK HEARTS
+========================================================= */
+function buildPetals(){
+  const layer = document.getElementById('petals');
+  const glyphs = ['🌸','🩷','💗','🌷','🎀','✨'];
+  for (let i = 0; i < 18; i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.fontSize = (13 + Math.random() * 16) + 'px';
+    p.style.setProperty('--dx', (Math.random() * 140 - 70) + 'px');
+    p.style.animationDuration = (11 + Math.random() * 14) + 's';
+    p.style.animationDelay = (-Math.random() * 20) + 's';
+    layer.appendChild(p);
+  }
+}
+document.addEventListener('pointerdown', (e)=>{
+  const h = document.createElement('div');
+  h.className = 'spawn-heart';
+  h.textContent = ['💗','🩷','🌸','💖'][Math.floor(Math.random()*4)];
+  h.style.left = e.clientX + 'px';
+  h.style.top = e.clientY + 'px';
+  document.body.appendChild(h);
+  setTimeout(()=> h.remove(), 1000);
+});
+
+/* =========================================================
+   GAME TABS
+========================================================= */
+document.getElementById('gameTabs').addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab');
+  if (!btn) return;
+  document.querySelectorAll('#gameTabs .tab').forEach(t => t.classList.toggle('on', t === btn));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.id === btn.dataset.panel));
+  if (btn.dataset.panel === 'p-scratch') initScratch();
+});
+
+/* =========================================================
+   GAME 1 — MEMORY MATCH
+========================================================= */
+const memGrid = document.getElementById('memGrid');
+const memEmojis = ['🧪','🩺','💗','🌸','🧬','💊','🩷','🌙'];
+let memFirst = null, memLock = false, memMoves = 0, memPairs = 0, memTimerId = null, memTime = 0;
+
+function memUpdateHud(){
+  document.getElementById('memMoves').textContent = memMoves;
+  document.getElementById('memPairs').textContent = memPairs;
+  document.getElementById('memTime').textContent = memTime;
+}
+function buildMemory(){
+  clearInterval(memTimerId);
+  memTimerId = null; memTime = 0; memMoves = 0; memPairs = 0; memFirst = null; memLock = false;
+  memUpdateHud();
+  document.getElementById('memHint').textContent = "Hanapin ang magkaparehong pares. Isipin mo: kaming dalawa — magkapares din. 😌";
+  const deck = [...memEmojis, ...memEmojis].sort(()=> Math.random() - 0.5);
+  memGrid.innerHTML = '';
+  deck.forEach(sym => {
+    const card = document.createElement('button');
+    card.className = 'mem-card';
+    card.dataset.sym = sym;
+    card.innerHTML = '<span class="face">' + sym + '</span>';
+    card.addEventListener('click', ()=> flipCard(card));
+    memGrid.appendChild(card);
+  });
+  memTimerId = setInterval(()=>{ memTime++; memUpdateHud(); }, 1000);
+}
+function flipCard(card){
+  if (memLock || card.classList.contains('done') || card === memFirst) return;
+  card.classList.add('up');
+  if (!memFirst){ memFirst = card; return; }
+
+  memMoves++; memUpdateHud();
+  if (memFirst.dataset.sym === card.dataset.sym){
+    memFirst.classList.add('done');
+    card.classList.add('done');
+    memFirst.classList.remove('up');
+    card.classList.remove('up');
+    memFirst = null;
+    memPairs++; memUpdateHud();
+    if (memPairs === 8){
+      clearInterval(memTimerId);
+      document.getElementById('memHint').textContent =
+        "Tapos ka na in " + memMoves + " moves at " + memTime + "s! Galing, Misha. 🎉 (Kaya mo rin 'yan sa exams.)";
+    }
+  } else {
+    const a = memFirst, b = card;
+    memLock = true; memFirst = null;
+    setTimeout(()=>{
+      a.classList.remove('up'); b.classList.remove('up');
+      memLock = false;
+    }, 750);
+  }
+}
+document.getElementById('memReset').addEventListener('click', buildMemory);
+
+/* =========================================================
+   GAME 2 — CATCH THE HEARTS
+========================================================= */
+const catchArea = document.getElementById('catchArea');
+let catchRunning = false, catchScore = 0, catchLeft = 30, catchSpawner = null, catchTicker = null;
+
+function catchHud(){
+  document.getElementById('catchScore').textContent = catchScore;
+  document.getElementById('catchTime').textContent = catchLeft;
+}
+function spawnHeartEl(){
+  const el = document.createElement('button');
+  el.className = 'falling-heart';
+  el.type = 'button';
+  el.textContent = ['💗','🩷','💖','🌸','🎀'][Math.floor(Math.random()*5)];
+  el.style.left = (Math.random() * 86) + '%';
+  el.style.fontSize = (22 + Math.random() * 18) + 'px';
+  el.style.animationDuration = (2.6 + Math.random() * 1.8) + 's';
+  el.addEventListener('animationend', ()=> el.remove());
+  el.addEventListener('click', ()=>{
+    if (!catchRunning) return;
+    catchScore++; catchHud(); el.remove();
+  });
+  catchArea.appendChild(el);
+}
+function startCatch(){
+  if (catchRunning) return;
+  catchRunning = true; catchScore = 0; catchLeft = 30; catchHud();
+  catchArea.innerHTML = '';
+  document.getElementById('catchBtn').textContent = 'Naglalaro... 🩷';
+  catchSpawner = setInterval(spawnHeartEl, 520);
+  catchTicker = setInterval(()=>{
+    catchLeft--; catchHud();
+    if (catchLeft <= 0) endCatch();
+  }, 1000);
+}
+function endCatch(){
+  clearInterval(catchSpawner); clearInterval(catchTicker);
+  catchRunning = false;
+  catchArea.querySelectorAll('.falling-heart').forEach(h => h.remove());
+  document.getElementById('catchBtn').textContent = 'Ulitin 🩷';
+  const msg = document.createElement('div');
+  msg.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:"Baloo 2";color:#e14b8a;font-size:1.3rem;text-align:center;padding:16px;';
+  msg.innerHTML = 'Nahuli mo ang ' + catchScore + ' hearts! 💗<br><span style="font-size:.95rem;color:#8a5674">Bawat isa, isang "miss na miss kita."</span>';
+  catchArea.appendChild(msg);
+}
+document.getElementById('catchBtn').addEventListener('click', startCatch);
+
+/* =========================================================
+   GAME 3 — MEDTECH WHACK
+========================================================= */
+const whackGrid = document.getElementById('whackGrid');
+const whackEmojis = ['🧪','🩺','🧬','💉','💊','🦠','🩸','🔬','🧫'];
+let whackRunning = false, whackScore = 0, whackLeft = 30, whackPop = null, whackTicker = null, whackActive = null;
+
+function buildWhack(){
+  whackGrid.innerHTML = '';
+  for (let i = 0; i < 9; i++){
+    const hole = document.createElement('button');
+    hole.className = 'hole';
+    hole.type = 'button';
+    hole.addEventListener('click', ()=>{
+      if (!whackRunning || !hole.classList.contains('up')) return;
+      whackScore++;
+      document.getElementById('whackScore').textContent = whackScore;
+      hole.classList.remove('up');
+      hole.textContent = '';
+      whackActive = null;
+    });
+    whackGrid.appendChild(hole);
+  }
+}
+function whackPopOne(){
+  const holes = [...whackGrid.children];
+  const free = holes.filter(h => !h.classList.contains('up'));
+  if (!free.length) return;
+  const hole = free[Math.floor(Math.random() * free.length)];
+  hole.textContent = whackEmojis[Math.floor(Math.random() * whackEmojis.length)];
+  hole.classList.add('up');
+  whackActive = hole;
+  setTimeout(()=>{
+    if (hole.classList.contains('up')){ hole.classList.remove('up'); hole.textContent = ''; }
+  }, 850);
+}
+function startWhack(){
+  if (whackRunning) return;
+  whackRunning = true; whackScore = 0; whackLeft = 30;
+  document.getElementById('whackScore').textContent = 0;
+  document.getElementById('whackTime').textContent = 30;
+  document.getElementById('whackBtn').textContent = 'Naglalaro... 🧪';
+  buildWhack();
+  whackPop = setInterval(whackPopOne, 700);
+  whackTicker = setInterval(()=>{
+    whackLeft--;
+    document.getElementById('whackTime').textContent = Math.max(whackLeft, 0);
+    if (whackLeft <= 0) endWhack();
+  }, 1000);
+}
+function endWhack(){
+  clearInterval(whackPop); clearInterval(whackTicker);
+  whackRunning = false;
+  whackGrid.querySelectorAll('.hole').forEach(h => { h.classList.remove('up'); h.textContent = ''; });
+  document.getElementById('whackBtn').textContent = 'Ulitin 🧪';
+  document.getElementById('whackTime').textContent = 0;
+  const label = document.createElement('p');
+  label.className = 'hint';
+  label.style.color = '#e14b8a';
+  label.style.fontFamily = "'Baloo 2'";
+  label.style.fontSize = '1.1rem';
+  label.textContent = 'Score mo: ' + whackScore + '! Future RMT talaga. 🩺💗';
+  whackGrid.after(label);
+  setTimeout(()=> label.remove(), 6000);
+}
+document.getElementById('whackBtn').addEventListener('click', startWhack);
+
+/* =========================================================
+   GAME 4 — BUBBLE NOTES
+========================================================= */
+const BUBBLE_MSGS = [
+  "Kaya mo 'yan, Misha! 🌸",
+  "Miss na miss kita. 💗",
+  "Pahinga ka muna saglit. ☁️",
+  "Inuman mo 'yan ng tubig! 💧",
+  "Ang galing mo, alam mo ba 'yon? ✨",
+  "Nandito lang ako. Palagi. 🩷",
+  "Isang yakap para sa'yo. 🤗",
+  "Huminga ka lang, okay lang 'yan. 🌷",
+  "Manliligaw mo pa rin si Pachi. 💍"
+];
+const bubbleWrap = document.getElementById('bubbleWrap');
+function buildBubbles(){
+  bubbleWrap.innerHTML = '';
+  document.getElementById('bubbleCount').textContent = '0';
+  document.getElementById('bubbleMsg').textContent = 'Pindutin ang bubble para sa mensahe. 🌸';
+  const msgs = [...BUBBLE_MSGS].sort(()=> Math.random() - 0.5);
+  let popped = 0;
+  msgs.forEach(m => {
+    const b = document.createElement('button');
+    b.className = 'bubble';
+    b.type = 'button';
+    b.textContent = '🫧';
+    b.setAttribute('aria-label', 'bubble');
+    b.addEventListener('click', ()=>{
+      if (b.classList.contains('pop')) return;
+      b.classList.add('pop');
+      popped++;
+      document.getElementById('bubbleCount').textContent = popped;
+      document.getElementById('bubbleMsg').textContent = m;
+      if (popped === msgs.length){
+        document.getElementById('bubbleMsg').textContent = 'Naubos mo lahat! 🌸 Balik ka bukas, may bago na naman. 💗';
+      }
+    });
+    bubbleWrap.appendChild(b);
+  });
+}
+document.getElementById('bubbleReset').addEventListener('click', buildBubbles);
+
+/* =========================================================
+   GAME 5 — SCRATCH CARD
+========================================================= */
+const SCRATCH_PRIZES = [
+  "Misha, kahit hindi ka makapag-reply ngayong araw, hindi ako magagalit. Naiintindihan kita. 💗",
+  "Surpresa: may milk tea ka sa akin pagkatapos ng exam week mo. 🧋",
+  "Ikaw ang pahinga ko, Misha. Kahit gaano kalayo, doon ako uuwi. 🌸",
+  "Ang sabi ni Pachi: 'Mag-aral ka lang, andito lang ako.' 📚",
+  "Isang libreng yakap na walang tanong — pwede mong i-claim anumang oras. 🤗",
+  "Kahit abutin tayo ng apat na taon ng pag-aaral mo, hindi ako aalis. RMT ka, at proud ako sa'yo. 🩺"
+];
+const scratchWrap = document.getElementById('scratchWrap');
+const scratchCanvas = document.getElementById('scratch');
+const sctx = scratchCanvas.getContext('2d');
+let scratching = false, scratchReady = false;
+
+function paintScratchCover(){
+  const w = scratchCanvas.width, h = scratchCanvas.height;
+  const g = sctx.createLinearGradient(0, 0, w, h);
+  g.addColorStop(0, '#ff9ec7');
+  g.addColorStop(1, '#e14b8a');
+  sctx.globalCompositeOperation = 'source-over';
+  sctx.fillStyle = g;
+  sctx.fillRect(0, 0, w, h);
+  sctx.fillStyle = 'rgba(255,255,255,.85)';
+  sctx.font = '600 ' + Math.max(14, Math.round(w / 20)) + 'px Quicksand, sans-serif';
+  sctx.textAlign = 'center';
+  sctx.fillText('I-scratch mo ako 🌸', w / 2, h / 2 - 6);
+  sctx.font = '600 ' + Math.max(11, Math.round(w / 30)) + 'px Quicksand, sans-serif';
+  sctx.fillStyle = 'rgba(255,255,255,.7)';
+  sctx.fillText('(may mensahe sa ilalim)', w / 2, h / 2 + 22);
+  scratchReady = true;
+}
+function newScratchCard(){
+  document.getElementById('scratchPrize').textContent =
+    SCRATCH_PRIZES[Math.floor(Math.random() * SCRATCH_PRIZES.length)];
+  requestAnimationFrame(()=>{
+    const r = scratchWrap.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    scratchCanvas.width = Math.max(1, Math.round(r.width * dpr));
+    scratchCanvas.height = Math.max(1, Math.round(r.height * dpr));
+    scratchCanvas.style.width = r.width + 'px';
+    scratchCanvas.style.height = r.height + 'px';
+    paintScratchCover();
+  });
+}
+function scratchAt(clientX, clientY){
+  if (!scratchReady) return;
+  const r = scratchCanvas.getBoundingClientRect();
+  const x = (clientX - r.left) * (scratchCanvas.width / r.width);
+  const y = (clientY - r.top) * (scratchCanvas.height / r.height);
+  sctx.globalCompositeOperation = 'destination-out';
+  sctx.beginPath();
+  sctx.arc(x, y, Math.max(14, scratchCanvas.width / 16), 0, Math.PI * 2);
+  sctx.fill();
+}
+function scratchProgress(){
+  const w = scratchCanvas.width, h = scratchCanvas.height;
+  if (!w || !h) return 0;
+  const data = sctx.getImageData(0, 0, w, h).data;
+  let clear = 0, total = 0;
+  for (let i = 3; i < data.length; i += 4 * 24){
+    total++;
+    if (data[i] < 40) clear++;
+  }
+  return total ? clear / total : 0;
+}
+function initScratch(){
+  scratchReady = false;
+  newScratchCard();
+}
+scratchCanvas.addEventListener('pointerdown', (e)=>{
+  scratching = true;
+  scratchCanvas.setPointerCapture(e.pointerId);
+  scratchAt(e.clientX, e.clientY);
+});
+scratchCanvas.addEventListener('pointermove', (e)=>{
+  if (!scratching) return;
+  scratchAt(e.clientX, e.clientY);
+});
+scratchCanvas.addEventListener('pointerup', ()=>{
+  scratching = false;
+  if (scratchProgress() > 0.5){
+    sctx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+    scratchCanvas.style.opacity = '0';
+    setTimeout(()=>{ scratchCanvas.style.display = 'none'; }, 400);
+  }
+});
+scratchCanvas.addEventListener('pointerleave', ()=> scratching = false);
+document.getElementById('scratchReset').addEventListener('click', ()=>{
+  scratchCanvas.style.display = 'block';
+  scratchCanvas.style.opacity = '1';
+  initScratch();
+});
+window.addEventListener('resize', ()=>{
+  const panel = document.getElementById('p-scratch');
+  if (panel.classList.contains('on')) initScratch();
+});
+
+/* =========================================================
+   STUDY BUDDY TIMER
+========================================================= */
+const MODES = { focus: 25, short: 5, long: 15 };
+let timerMode = 'focus';
+let timerTotal = MODES.focus * 60;
+let timerLeft = timerTotal;
+let timerId = null;
+
+const clockEl = document.getElementById('clock');
+const barEl = document.getElementById('timerBar');
+const timerMsg = document.getElementById('timerMsg');
+const timerStartBtn = document.getElementById('timerStart');
+
+function fmt(s){
+  const m = Math.floor(s / 60), sec = s % 60;
+  return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+}
+function paintTimer(){
+  clockEl.textContent = fmt(timerLeft);
+  const pct = timerTotal ? ((timerTotal - timerLeft) / timerTotal) * 100 : 0;
+  barEl.style.width = pct + '%';
+  document.title = (timerId ? fmt(timerLeft) + ' • ' : '') + 'Para kay Misha 🌸';
+}
+function stopTimer(){ clearInterval(timerId); timerId = null; timerStartBtn.textContent = 'Simulan ▶'; paintTimer(); }
+function startTimer(){
+  if (timerId){ stopTimer(); timerMsg.textContent = 'Naka-pause. Balikan mo lang ako. 🌸'; return; }
+  timerStartBtn.textContent = 'Pause ⏸';
+  timerMsg.textContent = timerMode === 'focus'
+    ? 'Nag-aaral ka, nag-aaral din ako. Sabay tayo. 📚'
+    : "Pahinga ka na, Misha. Deserve mo 'yan. ☁️";
+  timerId = setInterval(()=>{
+    timerLeft--;
+    if (timerLeft <= 0){
+      clearInterval(timerId); timerId = null;
+      timerStartBtn.textContent = 'Simulan ▶';
+      timerLeft = 0; paintTimer();
+      if (timerMode === 'focus'){
+        timerMsg.textContent = 'Tapos ang focus block! Magpahinga ka na ng 5 minuto. 🩷';
+      } else {
+        timerMsg.textContent = "Tapos ang pahinga. Balik na tayo sa focus, kaya mo 'yan! 💗";
+      }
+      burstHearts();
+      return;
+    }
+    paintTimer();
+  }, 1000);
+}
+function burstHearts(){
+  for (let i = 0; i < 16; i++){
+    const h = document.createElement('div');
+    h.className = 'spawn-heart';
+    h.textContent = ['💗','🌸','🩷','✨'][Math.floor(Math.random()*4)];
+    h.style.left = (10 + Math.random() * 80) + 'vw';
+    h.style.top = (40 + Math.random() * 40) + 'vh';
+    h.style.animationDelay = (Math.random() * .4) + 's';
+    document.body.appendChild(h);
+    setTimeout(()=> h.remove(), 1600);
+  }
+}
+document.querySelectorAll('.mode-row .tab').forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.mode-row .tab').forEach(b => b.classList.toggle('on', b === btn));
+    timerMode = btn.dataset.mode;
+    clearInterval(timerId); timerId = null;
+    timerStartBtn.textContent = 'Simulan ▶';
+    timerTotal = MODES[timerMode] * 60;
+    timerLeft = timerTotal;
+    timerMsg.textContent = 'Handa na ako kapag handa ka na. 🌷';
+    paintTimer();
+  });
+});
+timerStartBtn.addEventListener('click', startTimer);
+document.getElementById('timerReset').addEventListener('click', ()=>{
+  stopTimer();
+  timerLeft = timerTotal;
+  timerMsg.textContent = 'Bago na ulit. Simulan mo lang kapag ready ka. 🌷';
+  paintTimer();
+});
+
+/* =========================================================
+   HUG BUTTON
+========================================================= */
+const HUGS = [
+  "Yakap! 🤗 Isang mahigpit na yakap na galing dito. Kaya mo 'yan.",
+  "Huminga ka lang ng malalim. Nandito lang ako, hindi umaalis. 🌸",
+  "Kung kailangan mo ng kasama mag-aral mamayang gabi, sabihin mo lang. 💗",
+  "Alam mo ba? Ang pagod mo ngayon, magiging pangarap mo bukas. 🩺",
+  "Proud na proud ako sa'yo, Misha. Kahit hindi mo pa nakikita, nakikita ko. ✨",
+  "Kahit gaano kabusy ang araw mo, may isang taong lagi kang iniisip. Si Pachi 'yon. 🩷"
+];
+document.getElementById('hugBtn').addEventListener('click', ()=>{
+  const el = document.getElementById('hugText');
+  el.textContent = HUGS[Math.floor(Math.random() * HUGS.length)];
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = 'fade .4s ease';
+  burstHearts();
+});
+
+/* =========================================================
+   DAY COUNTER
+========================================================= */
+(function dayCounter(){
+  const start = new Date(START_DATE + 'T00:00:00');
+  const now = new Date();
+  const days = Math.max(0, Math.floor((now - start) / 86400000) + 1);
+  document.getElementById('dayCount').textContent = days;
+})();
+
+/* =========================================================
+   INIT
+========================================================= */
+buildPetals();
+buildDots();
+renderNote(Math.floor(Math.random() * NOTES.length));
+document.getElementById('noteCount').textContent = NOTES.length;
+buildMemory();
+buildBubbles();
+buildWhack();
+paintTimer();
+typeLoop();
+window.addEventListener('load', ()=> setTimeout(initScratch, 200));
+</script>
+</body>
+</html>
